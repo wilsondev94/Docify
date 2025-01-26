@@ -1,10 +1,14 @@
 # DOCIFY
 
- <!-- const sidebarCollapse = useAppSelector(
-    (state) => state.global.sidebarCollapse,
-  );
+<!-- import { create } from 'zustand'
 
-  const darkMode = useAppSelector((state) => state.global.darkMode);
+const useStore = create((set) => ({
+darkMode: flase,
+toggleDarkMode: () => set((state) => ({ darkMode: state.darkMode =true })),
+}),
+})) -->
+
+ <!--  const darkMode = useStore((state) => state.darkMode)
 
   useEffect(() => {
     if (darkMode) {
