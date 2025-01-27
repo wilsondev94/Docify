@@ -23,6 +23,8 @@ import { useEditorStore } from "@/store/useEditorStore";
 import { FontSizeExtension } from "@/extensions/fontSize";
 import { LineHeightExtension } from "@/extensions/lineHeight";
 
+import Ruler from "./Ruler";
+
 export default function Editor() {
   const { setEditor } = useEditorStore();
 
@@ -111,6 +113,7 @@ export default function Editor() {
 
   return (
     <div className="size-full overflow-x-auto bg-[#fbfcfc] p4 print:p-0 print:bg-white print:overflow-visible">
+      <Ruler />
       <div className="min-w-max flex justify-center w-[816px] py-4 print:py-0 mx-auto print:w-full print:min-w-0">
         <EditorContent editor={editor} />
       </div>
