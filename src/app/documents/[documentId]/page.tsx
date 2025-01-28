@@ -1,6 +1,6 @@
-import Editor from "@/components/Editor";
-import Navbar from "@/components/Navbar";
-import Toolbar from "@/components/Toolbar";
+import Editor from "@/components/documentIdComps/Editor";
+import DocIdNavbar from "@/components/documentIdComps/DocIdNavbar";
+import Toolbar from "@/components/documentIdComps/Toolbar";
 
 interface DocIdPros {
   params: Promise<{ documentId: string }>;
@@ -12,7 +12,7 @@ export default async function page({ params }: DocIdPros) {
   return (
     <div className="min-h-screen bg-[#FAFBFD]">
       <div className="flex flex-col px-4 pt-2 gap-y-2 fixed top-0 left-0 right-0 z-10 bg-[#fafbfd] print:hidden">
-        <Navbar />
+        <DocIdNavbar />
         <Toolbar />
       </div>
       <div className="pt-[114px] prin:pt-0">

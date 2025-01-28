@@ -38,17 +38,17 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { Separator } from "./ui/separator";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
+} from "../ui/dropdown-menu";
+import { Separator } from "../ui/separator";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "./ui/dialog";
+} from "../ui/dialog";
 
 interface ToolbarBtnProps {
   onClick?: () => void;

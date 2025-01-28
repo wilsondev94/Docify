@@ -14,7 +14,7 @@ import {
   MenubarSubContent,
   MenubarSubTrigger,
   MenubarTrigger,
-} from "./ui/menubar";
+} from "../ui/menubar";
 
 import {
   BoldIcon,
@@ -38,7 +38,7 @@ import {
 import DocumentInput from "./DocumentInput";
 import { useEditorStore } from "@/store/useEditorStore";
 
-export default function Navbar() {
+export default function DocIdNavbar() {
   const { editor } = useEditorStore();
 
   const insertTable = ({ rows, cols }: { rows: number; cols: number }) => {
