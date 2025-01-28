@@ -10,8 +10,3 @@ export const useEditorStore = create<EditorState>((set) => ({
   editor: null,
   setEditor: (editor) => set({ editor }),
 }));
-
-// export const useStore = create((set) => ({
-//   darkMode: false,
-//   toggleDarkMode: () => set((state) => ({ darkMode: (state.darkMode = true) })),
-// }));

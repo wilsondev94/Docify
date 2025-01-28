@@ -10,8 +10,8 @@ export default async function page({ params }: DocIdPros) {
   const { documentId } = await params;
   console.log(documentId);
   return (
-    <div className="min-h-screen bg-[#FAFBFD]">
-      <div className="flex flex-col px-4 pt-2 gap-y-2 fixed top-0 left-0 right-0 z-10 bg-[#fafbfd] print:hidden">
+    <div className="min-h-screen ">
+      <div className="flex flex-col px-4 py-3 gap-y-2 fixed top-0 left-0 right-0 z-10  print:hidden bg-gray-100 dark:bg-gray-950">
         <DocIdNavbar />
         <Toolbar />
       </div>

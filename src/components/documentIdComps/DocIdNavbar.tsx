@@ -25,18 +25,21 @@ import {
   FileTextIcon,
   GlobeIcon,
   ItalicIcon,
+  MoonIcon,
   PrinterIcon,
   Redo2Icon,
   RemoveFormattingIcon,
   StrikethroughIcon,
+  SunIcon,
   TextIcon,
   TrashIcon,
   UnderlineIcon,
   Undo2Icon,
 } from "lucide-react";
 
-import DocumentInput from "./DocumentInput";
 import { useEditorStore } from "@/store/useEditorStore";
+import DocumentInput from "./DocumentInput";
+import { useDarkModeStore } from "@/store/darkModeStore";
 
 export default function DocIdNavbar() {
   const { editor } = useEditorStore();
@@ -95,11 +98,19 @@ export default function DocIdNavbar() {
     onDownload(blob, `document.txt`);
   };
 
+  const { setIsDarkMode, isDarkMode } = useDarkModeStore();
+
   return (
-    <nav className="flex items-center justify-between">
+    <nav className="flex items-center justify-between dark:text-gray-200">
       <div className="flex gap-2 items-center">
         <Link href="/">
-          <Image src="/logo.svg" alt="logo" width={40} height={40} />
+          <Image
+            src="/logo.svg"
+            alt="logo"
+            width={40}
+            height={40}
+            className="bg-gray-400 dark:bg-gray-100 rounded-full"
+          />
         </Link>
         <div className="flex flex-col">
           <DocumentInput />
@@ -277,6 +288,13 @@ export default function DocIdNavbar() {
           </div>
         </div>
       </div>
+      <button onClick={() => setIsDarkMode(!isDarkMode)}>
+        {isDarkMode ? (
+          <SunIcon className="size-6 cursor-pointer" />
+        ) : (
+          <MoonIcon className="size-6 cursor-pointer" />
+        )}
+      </button>
     </nav>
   );
 }

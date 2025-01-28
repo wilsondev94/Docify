@@ -34,11 +34,11 @@ export default function TemplatesGAllery() {
   };
 
   return (
-    <div className="bg-[#f1f3f4]">
+    <div className=" ">
       <div className="max-w-screen-xl mx-auto px-16 py-6 flex flex-col gap-y-4">
-        <h3 className="font-medium">Start a new document</h3>
+        <h3 className="font-medium dark:text-gray-200">Start a new document</h3>
         <Carousel>
-          <CarouselContent className="-ml-4">
+          <CarouselContent className="-ml-4 ">
             {templates.map((template) => (
               <CarouselItem
                 key={template.id}
@@ -59,9 +59,9 @@ export default function TemplatesGAllery() {
                       backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
                     }}
-                    className="size-full hover:border-blue-500 rounded-sm border hover:bg-blue-50 transition flex flex-col items-center justify-center gap-y-4 bg-white"
+                    className="size-full hover:border-blue-500 rounded-sm border hover:bg-blue-50 transition flex flex-col items-center justify-center gap-y-4 bg-white dark:bg-gray-600 dark:opacity-80"
                   />
-                  <p className="text-sm font-medium truncate">
+                  <p className="text-sm font-medium truncate dark:text-gray-200">
                     {template.label}
                   </p>
                 </div>

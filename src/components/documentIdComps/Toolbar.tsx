@@ -659,15 +659,24 @@ export default function Toolbar() {
   ];
 
   return (
-    <div className="bg-[#f1f4f9 px-2.5 py-0.5 rounded-[24px] min-h-[40px] flex items-center gap-x-0">
+    <div className="px-2.5 py-0.5 rounded-[24px] min-h-[40px] flex items-center gap-x-0 bg-gray-200 dark:text-gray-300 dark:bg-gray-900">
       {sections[0].map((item) => (
         <ToolbarBtn key={item.label} {...item} />
       ))}
-      <Separator orientation="vertical" className="h-6 bg-neutral-300" />
+      <Separator
+        orientation="vertical"
+        className="h-6 bg-neutral-300 dark:bg-gray-500"
+      />
       <FontFamilyBtn />
-      <Separator orientation="vertical" className="h-6 bg-neutral-300" />
+      <Separator
+        orientation="vertical"
+        className="h-6 bg-neutral-300 dark:bg-gray-500"
+      />
       <HeadingBtn />
-      <Separator orientation="vertical" className="h-6 bg-neutral-300" />
+      <Separator
+        orientation="vertical"
+        className="h-6 bg-neutral-300 dark:bg-gray-500"
+      />
       <FontSizeBtn />
 
       {sections[1].map((item) => (
@@ -675,7 +684,10 @@ export default function Toolbar() {
       ))}
       <TextColorBtn />
       <HighlightColorBtn />
-      <Separator orientation="vertical" className="h-6 bg-neutral-300" />
+      <Separator
+        orientation="vertical"
+        className="h-6 bg-neutral-300 dark:bg-gray-500"
+      />
       <LinkBtn />
       <ImageBtn />
       <AlignBtn />
