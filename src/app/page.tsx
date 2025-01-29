@@ -3,9 +3,9 @@
 import { usePaginatedQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 
-import TemplatesGAllery from "@/components/HomeComps/TemplatesGAllery";
-import DocumentsTable from "@/components/HomeComps/DocumentsTable";
-import HomeNavbar from "@/components/HomeComps/HomeNavbar";
+import TemplatesGAllery from "@/components/HomePageComps/TemplatesGAllery";
+import DocumentsTable from "@/components/HomePageComps/DocumentsTable";
+import HomeNavbar from "@/components/HomePageComps/HomeNavbar";
 import { useSearchParams } from "@/hooks/useSearchParam";
 
 export default function Home() {

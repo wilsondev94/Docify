@@ -1,6 +1,7 @@
-import Editor from "@/components/documentIdComps/Editor";
-import DocIdNavbar from "@/components/documentIdComps/DocIdNavbar";
-import Toolbar from "@/components/documentIdComps/Toolbar";
+import Editor from "@/components/documentIdPageComps/Editor";
+import DocIdNavbar from "@/components/documentIdPageComps/DocIdNavbar";
+import Toolbar from "@/components/documentIdPageComps/Toolbar";
+import { Room } from "@/components/documentIdPageComps/Room";
 
 interface DocIdPros {
   params: Promise<{ documentId: string }>;
@@ -16,7 +17,9 @@ export default async function page({ params }: DocIdPros) {
         <Toolbar />
       </div>
       <div className="pt-[114px] prin:pt-0">
-        <Editor />
+        <Room>
+          <Editor />
+        </Room>
       </div>
     </div>
   );

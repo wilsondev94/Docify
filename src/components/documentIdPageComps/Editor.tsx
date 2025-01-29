@@ -23,9 +23,13 @@ import { useEditorStore } from "@/store/useEditorStore";
 import { FontSizeExtension } from "@/extensions/fontSize";
 import { LineHeightExtension } from "@/extensions/lineHeight";
 
+import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
+
 import Ruler from "./Ruler";
+import { Threads } from "./Threads";
 
 export default function Editor() {
+  const liveblocks = useLiveblocksExtension();
   const { setEditor } = useEditorStore();
 
   const editor = useEditor({
@@ -61,7 +65,10 @@ export default function Editor() {
       },
     },
     extensions: [
-      StarterKit,
+      liveblocks,
+      StarterKit.configure({
+        history: false,
+      }),
       FontSizeExtension,
       LineHeightExtension.configure({
         types: ["heading", "paragraph"],
@@ -99,7 +106,8 @@ export default function Editor() {
     <div className="size-full overflow-x-auto bg-[#fbfcfc] dark:bg-black p4 print:p-0 print:bg-white print:overflow-visible mt-3">
       <Ruler />
       <div className="min-w-max flex justify-center w-[816px] py-4 print:py-0 mx-auto print:w-full print:min-w-0 bg-[#fbfcfc] dark:bg-black dark:text-black">
-        <EditorContent editor={editor} className="bg-white dark:bg-black" />
+        <EditorContent editor={editor} />
+        <Threads editor={editor} />
       </div>
     </div>
   );
