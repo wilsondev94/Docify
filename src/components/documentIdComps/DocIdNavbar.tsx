@@ -40,6 +40,7 @@ import {
 import { useEditorStore } from "@/store/useEditorStore";
 import DocumentInput from "./DocumentInput";
 import { useDarkModeStore } from "@/store/darkModeStore";
+import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 
 export default function DocIdNavbar() {
   const { editor } = useEditorStore();
@@ -288,13 +289,23 @@ export default function DocIdNavbar() {
           </div>
         </div>
       </div>
-      <button onClick={() => setIsDarkMode(!isDarkMode)}>
-        {isDarkMode ? (
-          <SunIcon className="size-6 cursor-pointer" />
-        ) : (
-          <MoonIcon className="size-6 cursor-pointer" />
-        )}
-      </button>
+      <div className="flex gap-3 items-center pl-6">
+        <OrganizationSwitcher
+          afterCreateOrganizationUrl="/"
+          afterLeaveOrganizationUrl="/"
+          afterSelectOrganizationUrl="/"
+          afterSelectPersonalUrl="/"
+        />
+        <UserButton />
+
+        <button onClick={() => setIsDarkMode(!isDarkMode)} className="pl-6">
+          {isDarkMode ? (
+            <SunIcon className="size-6 cursor-pointer" />
+          ) : (
+            <MoonIcon className="size-6 cursor-pointer" />
+          )}
+        </button>
+      </div>
     </nav>
   );
 }

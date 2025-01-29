@@ -5,17 +5,23 @@ import { TableCell, TableRow } from "../ui/table";
 import { format } from "date-fns";
 import { SiGoogledocs } from "react-icons/si";
 import DocumentMenu from "./DocumentMenu";
+import { useRouter } from "next/navigation";
 interface DocumentRowProps {
   document: Doc<"documents">;
 }
 
 export default function DocumentRow({ document }: DocumentRowProps) {
+  const router = useRouter();
+
   const onNewTabClick = (id: string) => {
     window.open(`/documents/${id}`, "_blank");
   };
 
   return (
-    <TableRow className="cursor-pointer">
+    <TableRow
+      onClick={() => router.push(`/documents/${document._id}`)}
+      className="cursor-pointer"
+    >
       <TableCell className="w-[50px]">
         <SiGoogledocs className="size-6 fill-blue-500" />
       </TableCell>

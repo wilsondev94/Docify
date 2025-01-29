@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { UserButton } from "@clerk/nextjs";
+import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 
 import SearchInput from "./SearchInput";
 
@@ -25,9 +25,17 @@ export default function HomeNavbar() {
         <h3 className="text-xl">Docs</h3>
       </div>
       <SearchInput />
-      <UserButton />
+      <div className="flex gap-3 items-center pl-6">
+        <OrganizationSwitcher
+          afterCreateOrganizationUrl="/"
+          afterLeaveOrganizationUrl="/"
+          afterSelectOrganizationUrl="/"
+          afterSelectPersonalUrl="/"
+        />
+        <UserButton />
+      </div>
 
-      <button onClick={() => setIsDarkMode(!isDarkMode)}>
+      <button onClick={() => setIsDarkMode(!isDarkMode)} className="pl-6">
         {isDarkMode ? (
           <SunIcon className="size-6 cursor-pointer dark:text-white" />
         ) : (

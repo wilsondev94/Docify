@@ -17,6 +17,7 @@ import {
 } from "./ui/dialog";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { toast } from "sonner";
 
 interface RenameDialogProps {
   documentId: Id<"documents">;
@@ -42,16 +43,19 @@ export default function RenameDialog({
     updateDocument({
       id: documentId,
       title: title.trim() || "Untitled",
-    }).finally(() => {
-      setUpdating(false);
-      setOpen(false);
-    });
+    })
+      .catch(() => toast.error("Something went wrong."))
+      .then(() => toast.error("Document removed."))
+      .finally(() => {
+        setUpdating(false);
+        setOpen(false);
+      });
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent>
+      <DialogContent onClick={(e) => e.stopPropagation()}>
         <form onSubmit={onSubmit}>
           <DialogHeader>
             <DialogTitle>Rename document</DialogTitle>

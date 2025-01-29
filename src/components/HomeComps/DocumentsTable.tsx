@@ -1,6 +1,7 @@
 import { PaginationStatus } from "convex/react";
-import { Doc } from "../../../convex/_generated/dataModel";
 import { LoaderIcon } from "lucide-react";
+import { Doc } from "../../../convex/_generated/dataModel";
+import { Button } from "../ui/button";
 import {
   Table,
   TableBody,
@@ -58,6 +59,16 @@ export default function DocumentsTable({
           )}
         </Table>
       )}
+      <div className="flex items-center justify-center">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => loadMore(5)}
+          disabled={status !== "CanLoadMore"}
+        >
+          {status === "CanLoadMore" ? "Load more" : "End of results"}
+        </Button>
+      </div>
     </div>
   );
 }
