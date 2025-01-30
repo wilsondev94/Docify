@@ -22,16 +22,17 @@ export default function HomeNavbar() {
             className="bg-gray-400 dark:bg-gray-100 rounded-full"
           />
         </Link>
-        <h3 className="text-xl">Docs</h3>
       </div>
       <SearchInput />
       <div className="flex gap-3 items-center pl-6">
-        <OrganizationSwitcher
-          afterCreateOrganizationUrl="/"
-          afterLeaveOrganizationUrl="/"
-          afterSelectOrganizationUrl="/"
-          afterSelectPersonalUrl="/"
-        />
+        <div className=" dark:bg-gray-300 rounded-full">
+          <OrganizationSwitcher
+            afterCreateOrganizationUrl="/"
+            afterLeaveOrganizationUrl="/"
+            afterSelectOrganizationUrl="/"
+            afterSelectPersonalUrl="/"
+          />
+        </div>
         <UserButton />
       </div>
 

@@ -41,6 +41,7 @@ import { useEditorStore } from "@/store/useEditorStore";
 import DocumentInput from "./DocumentInput";
 import { useDarkModeStore } from "@/store/darkModeStore";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
+import { Avatars } from "./Avatar";
 
 export default function DocIdNavbar() {
   const { editor } = useEditorStore();
@@ -290,12 +291,15 @@ export default function DocIdNavbar() {
         </div>
       </div>
       <div className="flex gap-3 items-center pl-6">
-        <OrganizationSwitcher
-          afterCreateOrganizationUrl="/"
-          afterLeaveOrganizationUrl="/"
-          afterSelectOrganizationUrl="/"
-          afterSelectPersonalUrl="/"
-        />
+        <Avatars />
+        <div className=" dark:bg-gray-300 rounded-full">
+          <OrganizationSwitcher
+            afterCreateOrganizationUrl="/"
+            afterLeaveOrganizationUrl="/"
+            afterSelectOrganizationUrl="/"
+            afterSelectPersonalUrl="/"
+          />
+        </div>
         <UserButton />
 
         <button onClick={() => setIsDarkMode(!isDarkMode)} className="pl-6">

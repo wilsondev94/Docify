@@ -39,6 +39,7 @@ export default function TemplatesGAllery() {
   return (
     <div className=" ">
       <div className="max-w-screen-xl mx-auto px-16 py-6 flex flex-col gap-y-4">
+        <h3 className="text-xl">Docs</h3>
         <h3 className="font-medium dark:text-gray-200">Start a new document</h3>
         <Carousel>
           <CarouselContent className="-ml-4 ">
