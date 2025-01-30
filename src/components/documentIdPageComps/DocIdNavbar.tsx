@@ -42,6 +42,7 @@ import DocumentInput from "./DocumentInput";
 import { useDarkModeStore } from "@/store/darkModeStore";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 import { Avatars } from "./Avatar";
+import Inbox from "./Inbox";
 
 export default function DocIdNavbar() {
   const { editor } = useEditorStore();
@@ -292,6 +293,7 @@ export default function DocIdNavbar() {
       </div>
       <div className="flex gap-3 items-center pl-6">
         <Avatars />
+        <Inbox />
         <div className=" dark:bg-gray-300 rounded-full">
           <OrganizationSwitcher
             afterCreateOrganizationUrl="/"

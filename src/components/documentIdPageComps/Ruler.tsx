@@ -1,3 +1,4 @@
+import { useMutation, useStorage } from "@liveblocks/react";
 import { useRef, useState } from "react";
 import { FaCaretDown } from "react-icons/fa";
 
@@ -8,8 +9,17 @@ const MINIMUM_SPACE_BETWEEN_MARKERS = 100;
 const TEXT_EDITOR_MARGINS = 56;
 
 export default function Ruler() {
-  const [leftMargin, setLeftMargin] = useState(TEXT_EDITOR_MARGINS);
-  const [rightMargin, setRightMargin] = useState(TEXT_EDITOR_MARGINS);
+  const leftMargin = useStorage((root) => root.leftMargin) ?? 56;
+
+  const setLeftMargin = useMutation(({ storage }, position: number) => {
+    storage.set("leftMargin", position);
+  }, []);
+
+  const rightMargin = useStorage((root) => root.rightMargin) ?? 56;
+
+  const setRightMargin = useMutation(({ storage }, position: number) => {
+    storage.set("rightMargin", position);
+  }, []);
 
   const [isDraggingLeft, setisDraggingLeft] = useState(false);
   const [isDraggingRight, setisDraggingRight] = useState(false);
