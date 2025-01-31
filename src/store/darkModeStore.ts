@@ -14,12 +14,12 @@ interface DarkModeState {
 export const useDarkModeStore = create<DarkModeState>()(
   persist(
     (set, get) => ({
-      isDarkMode: false, // Default to light mode
+      isDarkMode: false,
       setIsDarkMode: () => set({ isDarkMode: !get().isDarkMode }),
     }),
     {
-      name: "darkMode-storage", // Key for localStorage
-      storage: createJSONStorage(() => localStorage), // Persist in localStorage
+      name: "darkMode-storage",
+      storage: createJSONStorage(() => localStorage),
     }
   )
 );

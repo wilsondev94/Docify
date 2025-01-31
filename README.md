@@ -1,19 +1,18 @@
-# DOCIFY
+# PROJECT
 
-<!-- import { create } from 'zustand'
+Docify
 
-const useStore = create((set) => ({
-darkMode: flase,
-toggleDarkMode: () => set((state) => ({ darkMode: state.darkMode =true })),
-}),
-})) -->
+## About
 
- <!--  const darkMode = useStore((state) => state.darkMode)
+A document creation application that allows more two or more users within an organization work collaboratively on a particular document at the same time in a text editor. These users can see each other's activities such as editing a line of text, mentioning each other and so on. Users can also get notifications when mentioned.
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]); -->
+### Technologies
+
+- NextJs
+- TypeScript
+- TailwindCSS
+- Zustand
+- Titap text editor
+- Liveblocks package (for collaborative features)
+- Convex (for database management)
+- Clerk (for user auth)
