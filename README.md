@@ -4,7 +4,7 @@ Docify
 
 ## About
 
-A document creation application that allows more two or more users within an organization work collaboratively on a particular document at the same time in a text editor. These users can see each other's activities such as editing a line of text, mentioning each other and so on. Users can also get notifications when mentioned.
+A document creation application that allows two or more users within an organization work collaboratively on a particular document at the same time in a text editor. These users can see each other's activities such as editing a line of text, mentioning each other to call anyone's atention as well as commenting. Users can also get notifications when mentioned.
 
 ### Technologies
 
