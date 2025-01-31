@@ -8,15 +8,20 @@ import {
   ClientSideSuspense,
 } from "@liveblocks/react/suspense";
 import { useParams } from "next/navigation";
-import FullScreenLoader from "../FullScreenLoader";
+import FullScreenLoader from "../reusableComps/FullScreenLoader";
 import { getDocuments, getUsers } from "@/lib/actions";
 import { toast } from "sonner";
 import { Id } from "../../../convex/_generated/dataModel";
+import {
+  DEFAULT_LEFT_MARGIN,
+  DEFAULT_RIGHT_MARGIN,
+} from "@/constants/marginDefaults";
 
 interface User {
   id: string;
   name: string;
   avatar: string;
+  color: string;
 }
 
 export function Room({ children }: { children: ReactNode }) {
@@ -79,7 +84,10 @@ export function Room({ children }: { children: ReactNode }) {
     >
       <RoomProvider
         id={params.documentId as string}
-        initialStorage={{ leftMargin: 56, rightMargin: 56 }}
+        initialStorage={{
+          leftMargin: DEFAULT_LEFT_MARGIN,
+          rightMargin: DEFAULT_RIGHT_MARGIN,
+        }}
       >
         <ClientSideSuspense
           fallback={<FullScreenLoader label="Room loading..." />}

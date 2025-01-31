@@ -43,8 +43,23 @@ import { useDarkModeStore } from "@/store/darkModeStore";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 import { Avatars } from "./Avatar";
 import Inbox from "./Inbox";
+import { Doc } from "../../../convex/_generated/dataModel";
+import { useMutation } from "convex/react";
+import { api } from "../../../convex/_generated/api";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import RemoveDialog from "../reusableComps/RemoveDialog";
+import RenameDialog from "../reusableComps/RenameDialog";
 
-export default function DocIdNavbar() {
+interface DocIdNavbarProps {
+  documentData: Doc<"documents">;
+}
+
+export default function DocIdNavbar({ documentData }: DocIdNavbarProps) {
+  const router = useRouter();
+
+  const { setIsDarkMode, isDarkMode } = useDarkModeStore();
+
   const { editor } = useEditorStore();
 
   const insertTable = ({ rows, cols }: { rows: number; cols: number }) => {
@@ -76,7 +91,7 @@ export default function DocIdNavbar() {
       type: "application/json",
     });
 
-    onDownload(blob, `document.json`);
+    onDownload(blob, `${documentData.title}.json`);
   };
 
   const onSaveHTML = () => {
@@ -87,7 +102,7 @@ export default function DocIdNavbar() {
       type: "text/html",
     });
 
-    onDownload(blob, `document.html`);
+    onDownload(blob, `${documentData.title}.html`);
   };
 
   const onSaveText = () => {
@@ -98,14 +113,27 @@ export default function DocIdNavbar() {
       type: "text/plain",
     });
 
-    onDownload(blob, `document.txt`);
+    onDownload(blob, `${documentData.title}.txt`);
   };
 
-  const { setIsDarkMode, isDarkMode } = useDarkModeStore();
+  const mutation = useMutation(api.documents.create);
+
+  const onNewDocument = () => {
+    mutation({
+      title: "Untitled document",
+      initialContent: "",
+    })
+      .catch(() => toast.error("Something went wrong"))
+      .then((id) => {
+        console.log(id);
+        toast.success("Document created");
+        router.push(`/documents/${id}`);
+      });
+  };
 
   return (
     <nav className="flex items-center justify-between dark:text-gray-200">
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-4 items-center">
         <Link href="/">
           <Image
             src="/logo.svg"
@@ -116,7 +144,7 @@ export default function DocIdNavbar() {
           />
         </Link>
         <div className="flex flex-col">
-          <DocumentInput />
+          <DocumentInput title={documentData.title} id={documentData._id} />
           <div className="flex">
             <Menubar className="border-none bg-transparent shadow-none h-auto p-0">
               <MenubarMenu>
@@ -152,21 +180,34 @@ export default function DocIdNavbar() {
                     </MenubarSubContent>
                   </MenubarSub>
 
-                  <MenubarItem>
+                  <MenubarItem onClick={onNewDocument}>
                     <FilePlusIcon className="size-4 mr-2" /> New Document
                   </MenubarItem>
 
                   <MenubarSeparator />
 
-                  <MenubarItem>
-                    <FilePenIcon className="size-4 mr-2" /> Rename
-                  </MenubarItem>
+                  <RenameDialog
+                    documentId={documentData._id}
+                    initialTitle={documentData.title}
+                  >
+                    <MenubarItem
+                      onClick={(e) => e.stopPropagation()}
+                      onSelect={(e) => e.preventDefault()}
+                    >
+                      <FilePenIcon className="size-4 mr-2" /> Rename
+                    </MenubarItem>
+                  </RenameDialog>
 
                   <MenubarSeparator />
 
-                  <MenubarItem>
-                    <TrashIcon className="size-4 mr-2" /> Remove
-                  </MenubarItem>
+                  <RemoveDialog documentId={documentData._id}>
+                    <MenubarItem
+                      onClick={(e) => e.stopPropagation()}
+                      onSelect={(e) => e.preventDefault()}
+                    >
+                      <TrashIcon className="size-4 mr-2" /> Remove
+                    </MenubarItem>
+                  </RemoveDialog>
 
                   <MenubarSeparator />
 

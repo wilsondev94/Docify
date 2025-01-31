@@ -11,7 +11,7 @@ import {
   ConvexReactClient,
   Unauthenticated,
 } from "convex/react";
-import FullScreenLoader from "./FullScreenLoader";
+import FullScreenLoader from "./reusableComps/FullScreenLoader";
 
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 

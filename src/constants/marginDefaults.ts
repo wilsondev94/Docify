@@ -1,0 +1,5 @@
+export const DEFAULT_LEFT_MARGIN = 56;
+export const DEFAULT_RIGHT_MARGIN = 56;
+
+export const CONTAINER_WIDTH = 816;
+export const MINIMUM_SPACE_BETWEEN_MARKERS = 100;

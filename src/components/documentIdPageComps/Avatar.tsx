@@ -52,7 +52,6 @@ interface AvatarProps {
 }
 
 function Avatar({ src, name }: AvatarProps) {
-  console.log(name, src);
   return (
     <div
       style={{ width: AVATAR_SIZE, height: AVATAR_SIZE }}

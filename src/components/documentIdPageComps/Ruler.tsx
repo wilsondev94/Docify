@@ -1,21 +1,25 @@
+import {
+  CONTAINER_WIDTH,
+  DEFAULT_LEFT_MARGIN,
+  DEFAULT_RIGHT_MARGIN,
+  MINIMUM_SPACE_BETWEEN_MARKERS,
+} from "@/constants/marginDefaults";
 import { useMutation, useStorage } from "@liveblocks/react";
 import { useRef, useState } from "react";
 import { FaCaretDown } from "react-icons/fa";
 
 const markers = Array.from({ length: 83 }, (_, i) => i);
 
-const CONTAINER_WIDTH = 816;
-const MINIMUM_SPACE_BETWEEN_MARKERS = 100;
-const TEXT_EDITOR_MARGINS = 56;
-
 export default function Ruler() {
-  const leftMargin = useStorage((root) => root.leftMargin) ?? 56;
+  const leftMargin =
+    useStorage((root) => root.leftMargin) ?? DEFAULT_LEFT_MARGIN;
 
   const setLeftMargin = useMutation(({ storage }, position: number) => {
     storage.set("leftMargin", position);
   }, []);
 
-  const rightMargin = useStorage((root) => root.rightMargin) ?? 56;
+  const rightMargin =
+    useStorage((root) => root.rightMargin) ?? DEFAULT_RIGHT_MARGIN;
 
   const setRightMargin = useMutation(({ storage }, position: number) => {
     storage.set("rightMargin", position);
@@ -40,11 +44,11 @@ export default function Ruler() {
   };
 
   const handleLeftDoubleClick = () => {
-    setLeftMargin(TEXT_EDITOR_MARGINS);
+    setLeftMargin(DEFAULT_LEFT_MARGIN);
   };
 
   const handleRightDoubleClick = () => {
-    setRightMargin(TEXT_EDITOR_MARGINS);
+    setRightMargin(DEFAULT_RIGHT_MARGIN);
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {

@@ -12,8 +12,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import RemoveDialog from "../RemoveDialog";
-import RenameDialog from "../RenameDialog";
+import RemoveDialog from "../reusableComps/RemoveDialog";
+import RenameDialog from "../reusableComps/RenameDialog";
 
 interface DocumentMenuProps {
   documentId: Id<"documents">;

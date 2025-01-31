@@ -27,14 +27,24 @@ export async function POST(req: Request) {
   const isOrganizationMember = !!(
     document.organizationId && document.organizationId === sessionClaims.org_id
   );
+
   if (!isOwner && !isOrganizationMember)
     return new Response("Unauthorized", { status: 401 });
 
+  // To give each user diff tag color in the room
+  const name =
+    user.fullName ?? user.primaryEmailAddress?.emailAddress ?? "Anonymous";
+  const nameToNumber = name
+    .split("")
+    .reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const hue = Math.abs(nameToNumber) % 360;
+  const color = `hsl(${hue},80%,60%)`;
+
   const session = liveblocks.prepareSession(user.id, {
     userInfo: {
-      name:
-        user.fullName ?? user.primaryEmailAddress?.emailAddress ?? "Anonymous",
+      name,
       avatar: user.imageUrl,
+      color,
     },
   });
 

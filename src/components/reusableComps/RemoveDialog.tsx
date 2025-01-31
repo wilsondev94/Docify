@@ -3,8 +3,8 @@
 import { useState } from "react";
 
 import { useMutation } from "convex/react";
-import { api } from "../../convex/_generated/api";
-import { Id } from "../../convex/_generated/dataModel";
+import { api } from "../../../convex/_generated/api";
+import { Id } from "../../../convex/_generated/dataModel";
 
 import {
   AlertDialog,
@@ -16,8 +16,9 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "./ui/alert-dialog";
+} from "../ui/alert-dialog";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 interface RemoveDialogProps {
   documentId: Id<"documents">;
@@ -28,6 +29,8 @@ export default function RemoveDialog({
   documentId,
   children,
 }: RemoveDialogProps) {
+  const router = useRouter();
+
   const deleteDocument = useMutation(api.documents.deleteById);
 
   const [deleting, setDeleting] = useState(false);
@@ -54,8 +57,14 @@ export default function RemoveDialog({
               setDeleting(true);
 
               deleteDocument({ id: documentId })
+                .then(() => {
+                  toast.success("document deleted.");
+                  router.push("/");
+                })
                 .catch(() => toast.error("Something went wrong."))
-                .finally(() => setDeleting(false));
+                .finally(() => {
+                  setDeleting(false);
+                });
             }}
           >
             Delete

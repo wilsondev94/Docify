@@ -1,39 +1,51 @@
 "use client";
 
-import { EditorContent, useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
 import TaskItem from "@tiptap/extension-task-item";
 import TaskList from "@tiptap/extension-task-list";
+import { EditorContent, useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
 
+import { Color } from "@tiptap/extension-color";
+import FontFamily from "@tiptap/extension-font-family";
+import Highlight from "@tiptap/extension-highlight";
+import Image from "@tiptap/extension-image";
+import Link from "@tiptap/extension-link";
 import Table from "@tiptap/extension-table";
 import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
 import TableRow from "@tiptap/extension-table-row";
-import Image from "@tiptap/extension-image";
-import ImageResize from "tiptap-extension-resize-image";
-import Underline from "@tiptap/extension-underline";
-import FontFamily from "@tiptap/extension-font-family";
-import TextStyle from "@tiptap/extension-text-style";
-import Highlight from "@tiptap/extension-highlight";
-import { Color } from "@tiptap/extension-color";
-import Link from "@tiptap/extension-link";
 import TextAlign from "@tiptap/extension-text-align";
+import TextStyle from "@tiptap/extension-text-style";
+import Underline from "@tiptap/extension-underline";
 
-import { useEditorStore } from "@/store/useEditorStore";
 import { FontSizeExtension } from "@/extensions/fontSize";
 import { LineHeightExtension } from "@/extensions/lineHeight";
+import { useEditorStore } from "@/store/useEditorStore";
 
 import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
 
+import {
+  DEFAULT_LEFT_MARGIN,
+  DEFAULT_RIGHT_MARGIN,
+} from "@/constants/marginDefaults";
+import { useStorage } from "@liveblocks/react";
 import Ruler from "./Ruler";
 import { Threads } from "./Threads";
-import { useStorage } from "@liveblocks/react";
 
-export default function Editor() {
-  const leftMargin = useStorage((root) => root.leftMargin);
-  const rightMargin = useStorage((root) => root.rightMargin);
+interface EditorProps {
+  initialContent?: string | undefined;
+}
 
-  const liveblocks = useLiveblocksExtension();
+export default function Editor({ initialContent }: EditorProps) {
+  const leftMargin =
+    useStorage((root) => root.leftMargin) ?? DEFAULT_LEFT_MARGIN;
+  const rightMargin =
+    useStorage((root) => root.rightMargin) ?? DEFAULT_RIGHT_MARGIN;
+
+  const liveblocks = useLiveblocksExtension({
+    initialContent,
+    offlineSupport_experimental: true,
+  });
   const { setEditor } = useEditorStore();
 
   const editor = useEditor({
@@ -63,7 +75,7 @@ export default function Editor() {
     },
     editorProps: {
       attributes: {
-        style: `padding-left: ${leftMargin ?? 56}px; padding-right:${rightMargin ?? 56}px;`,
+        style: `padding-left: ${leftMargin}px; padding-right:${rightMargin}px;`,
         class:
           "focus:outline-none print:border-0 bg-white dark:bg-gray-950 border border-[#C7C7C7] dark:border-gray-700 dark:print:border-0 flex flex-col min-h-[1054px] w-[816px] pt-10 pr-14 pb-10 cursor-text dark:text-white",
       },
@@ -79,7 +91,7 @@ export default function Editor() {
         defaultLineHeight: "normal",
       }),
       Image,
-      ImageResize,
+      // ImageResize,
       TaskList,
       TaskItem.configure({
         nested: true,

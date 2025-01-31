@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { AlertTriangleIcon, ArrowLeftIcon } from "lucide-react";
 import Link from "next/link";
 
-export default function error({
+export default function Error({
   error,
   reset,
 }: {
@@ -20,7 +20,7 @@ export default function error({
           </div>
         </div>
         <div className="space-y-2">
-          <h2 className="text-xl font-semibold text-gray-900">
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
             Something went wrong!
           </h2>
           <p>{error.message}</p>
