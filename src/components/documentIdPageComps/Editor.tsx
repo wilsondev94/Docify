@@ -78,7 +78,7 @@ export default function Editor({ initialContent }: EditorProps) {
       attributes: {
         style: `padding-left: ${leftMargin}px; padding-right:${rightMargin}px;`,
         class:
-          "focus:outline-none print:border-0 bg-white dark:bg-gray-950 border border-[#C7C7C7] dark:border-gray-700 dark:print:border-0 flex flex-col min-h-[1054px] w-[816px] pt-10 pr-14 pb-10 cursor-text dark:text-white",
+          "focus:outline-none print:border-0 bg-white dark:bg-gray-950 border border-[#C7C7C7] dark:border-gray-700 dark:print:border-0 flex flex-col min-h-[1054px] w-[816px] pt-10 pr-14 pb-10 cursor-text dark:text-white xsm:w-[350px] sm:w-[816px]",
       },
     },
     extensions: [
@@ -122,7 +122,7 @@ export default function Editor({ initialContent }: EditorProps) {
   return (
     <div className="size-full overflow-x-auto bg-[#fbfcfc] dark:bg-black p-4 print:p-0 print:bg-white print:overflow-visible mt-3">
       <Ruler />
-      <div className="min-w-max flex justify-center w-[816px] py-4 print:py-0 mx-auto print:w-full print:min-w-0 bg-[#fbfcfc] dark:bg-black dark:text-black">
+      <div className="min-w-max flex justify-center w-[816px] xsm:w-[350px] sm:w-[816px] py-4 print:py-0 mx-auto print:w-full print:min-w-0 bg-[#fbfcfc] dark:bg-black dark:text-black">
         <EditorContent editor={editor} />
         <Threads editor={editor} />
       </div>

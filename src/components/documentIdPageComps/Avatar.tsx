@@ -5,7 +5,7 @@ import { useOthers, useSelf } from "@liveblocks/react/suspense";
 
 import { Separator } from "../ui/separator";
 
-const AVATAR_SIZE = 36;
+const AVATAR_SIZE = 23;
 
 export const Avatars = () => {
   return (
@@ -55,7 +55,7 @@ function Avatar({ src, name }: AvatarProps) {
   return (
     <div
       style={{ width: AVATAR_SIZE, height: AVATAR_SIZE }}
-      className="group -ml-2 flex shrink-0 place-content-center relative border-4 border-gray-300 dark:border-gray-400 rounded-full  dark:bg-gray-800"
+      className="group -ml-2 flex shrink-0 place-content-center relative sm:border-3 xsm:border-2 border-gray-300 dark:border-gray-400 rounded-full dark:bg-gray-800"
     >
       <div className="opacity-0 group-hover:opacity-100 absolute top-full py-1 px-2 text-white dark:text-black text-xs rounded-lg mt-2.5 z-10 bg-black dark:bg-white whitespace-nowrap transition-opacity">
         {name}

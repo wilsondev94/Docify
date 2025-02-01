@@ -20,9 +20,12 @@ export default function Inbox() {
       fallback={
         <>
           <Button disabled variant="ghost" size="icon" className="relative">
-            <BellIcon className="size-5" />
+            <BellIcon className="size-5 " />
           </Button>
-          <Separator orientation="vertical" className="h-6 dark:bg-gray-700" />
+          <Separator
+            orientation="vertical"
+            className="h-6 xsm:h-10 dark:bg-gray-700"
+          />
         </>
       }
     >

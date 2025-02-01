@@ -25,12 +25,10 @@ import {
   FileTextIcon,
   GlobeIcon,
   ItalicIcon,
-  MoonIcon,
   PrinterIcon,
   Redo2Icon,
   RemoveFormattingIcon,
   StrikethroughIcon,
-  SunIcon,
   TextIcon,
   TrashIcon,
   UnderlineIcon,
@@ -38,18 +36,17 @@ import {
 } from "lucide-react";
 
 import { useEditorStore } from "@/store/useEditorStore";
-import DocumentInput from "./DocumentInput";
-import { useDarkModeStore } from "@/store/darkModeStore";
-import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
-import { Avatars } from "./Avatar";
-import Inbox from "./Inbox";
-import { Doc } from "../../../convex/_generated/dataModel";
 import { useMutation } from "convex/react";
-import { api } from "../../../convex/_generated/api";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { api } from "../../../convex/_generated/api";
+import { Doc } from "../../../convex/_generated/dataModel";
 import RemoveDialog from "../reusableComps/RemoveDialog";
 import RenameDialog from "../reusableComps/RenameDialog";
+import ReusableNavItems from "../reusableComps/ReusableNavItems";
+import { Avatars } from "./Avatar";
+import DocumentInput from "./DocumentInput";
+import Inbox from "./Inbox";
 
 interface DocIdNavbarProps {
   documentData: Doc<"documents">;
@@ -57,8 +54,6 @@ interface DocIdNavbarProps {
 
 export default function DocIdNavbar({ documentData }: DocIdNavbarProps) {
   const router = useRouter();
-
-  const { setIsDarkMode, isDarkMode } = useDarkModeStore();
 
   const { editor } = useEditorStore();
 
@@ -132,7 +127,7 @@ export default function DocIdNavbar({ documentData }: DocIdNavbarProps) {
   };
 
   return (
-    <nav className="flex items-center justify-between dark:text-gray-200">
+    <nav className=" flex items-center justify-between dark:text-gray-200">
       <div className="flex gap-4 items-center">
         <Link href="/">
           <Image
@@ -143,12 +138,19 @@ export default function DocIdNavbar({ documentData }: DocIdNavbarProps) {
             className="bg-gray-400 dark:bg-gray-100 rounded-full"
           />
         </Link>
-        <div className="flex flex-col">
+        <div className="flex flex-col xsm:absolute xsm:top-[3.5rem] sm:absolute sm:top-2 sm:left-[5rem]">
           <DocumentInput title={documentData.title} id={documentData._id} />
           <div className="flex">
             <Menubar className="border-none bg-transparent shadow-none h-auto p-0">
               <MenubarMenu>
-                <MenubarTrigger className="text-sm font-normal py-0.5 px-[7px] rounded-sm hover:bg-muted h-auto">
+                <MenubarTrigger
+                  className="text-sm font-normal py-0.5 px-[7px] rounded-sm hover:bg-gray-300 dark:hover:bg-gray-900 h-auto
+                data-[state=open]:bg-gray-400
+                dark:data-[state=open]:bg-gray-600
+                data-[state=open]:text-accent-foreground
+
+                "
+                >
                   File
                 </MenubarTrigger>
                 <MenubarContent className="print:hidden">
@@ -219,7 +221,12 @@ export default function DocIdNavbar({ documentData }: DocIdNavbarProps) {
               </MenubarMenu>
 
               <MenubarMenu>
-                <MenubarTrigger className="text-sm font-normal py-0.5 px-[7px] rounded-sm hover:bg-muted h-auto">
+                <MenubarTrigger
+                  className="text-sm font-normal py-0.5 px-[7px] rounded-sm hover:bg-gray-300 dark:hover:bg-gray-900 h-auto
+                data-[state=open]:bg-gray-400
+                dark:data-[state=open]:bg-gray-600
+                data-[state=open]:text-accent-foreground"
+                >
                   Edit
                 </MenubarTrigger>
 
@@ -240,7 +247,12 @@ export default function DocIdNavbar({ documentData }: DocIdNavbarProps) {
               </MenubarMenu>
 
               <MenubarMenu>
-                <MenubarTrigger className="text-sm font-normal py-0.5 px-[7px] rounded-sm hover:bg-muted h-auto">
+                <MenubarTrigger
+                  className="text-sm font-normal py-0.5 px-[7px] rounded-sm hover:bg-gray-300 dark:hover:bg-gray-900 h-auto
+                data-[state=open]:bg-gray-400
+                dark:data-[state=open]:bg-gray-600
+                data-[state=open]:text-accent-foreground"
+                >
                   Insert
                 </MenubarTrigger>
 
@@ -274,7 +286,12 @@ export default function DocIdNavbar({ documentData }: DocIdNavbarProps) {
               </MenubarMenu>
 
               <MenubarMenu>
-                <MenubarTrigger className="text-sm font-normal py-0.5 px-[7px] rounded-sm hover:bg-muted h-auto">
+                <MenubarTrigger
+                  className="text-sm font-normal py-0.5 px-[7px] rounded-sm hover:bg-gray-300 dark:hover:bg-gray-900 h-auto
+                data-[state=open]:bg-gray-400
+                dark:data-[state=open]:bg-gray-600
+                data-[state=open]:text-accent-foreground"
+                >
                   Format
                 </MenubarTrigger>
                 <MenubarContent>
@@ -332,26 +349,11 @@ export default function DocIdNavbar({ documentData }: DocIdNavbarProps) {
           </div>
         </div>
       </div>
-      <div className="flex gap-3 items-center pl-6">
+      <div className="flex gap-2 items-center pl-2">
         <Avatars />
         <Inbox />
-        <div className=" dark:bg-gray-300 rounded-full">
-          <OrganizationSwitcher
-            afterCreateOrganizationUrl="/"
-            afterLeaveOrganizationUrl="/"
-            afterSelectOrganizationUrl="/"
-            afterSelectPersonalUrl="/"
-          />
-        </div>
-        <UserButton />
 
-        <button onClick={() => setIsDarkMode(!isDarkMode)} className="pl-6">
-          {isDarkMode ? (
-            <SunIcon className="size-6 cursor-pointer" />
-          ) : (
-            <MoonIcon className="size-6 cursor-pointer" />
-          )}
-        </button>
+        <ReusableNavItems />
       </div>
     </nav>
   );

@@ -1,15 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 
+import ReusableNavItems from "../reusableComps/ReusableNavItems";
 import SearchInput from "./SearchInput";
 
-import { MoonIcon, SunIcon } from "lucide-react";
-import { useDarkModeStore } from "@/store/darkModeStore";
-
 export default function HomeNavbar() {
-  const { isDarkMode, setIsDarkMode } = useDarkModeStore();
-
   return (
     <nav className="flex items-center justify-between h-full w-full ">
       <div className="flex gap-3 items-center shrink-0 pr-6">
@@ -24,25 +19,7 @@ export default function HomeNavbar() {
         </Link>
       </div>
       <SearchInput />
-      <div className="flex gap-3 items-center pl-6">
-        <div className=" dark:bg-gray-300 rounded-full">
-          <OrganizationSwitcher
-            afterCreateOrganizationUrl="/"
-            afterLeaveOrganizationUrl="/"
-            afterSelectOrganizationUrl="/"
-            afterSelectPersonalUrl="/"
-          />
-        </div>
-        <UserButton />
-      </div>
-
-      <button onClick={() => setIsDarkMode(!isDarkMode)} className="pl-6">
-        {isDarkMode ? (
-          <SunIcon className="size-6 cursor-pointer dark:text-white" />
-        ) : (
-          <MoonIcon className="size-6 cursor-pointer" />
-        )}
-      </button>
+      <ReusableNavItems />
     </nav>
   );
 }

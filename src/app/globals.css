@@ -84,6 +84,17 @@ body {
   }
   body {
     @apply text-foreground bg-white dark:bg-black;
+
+    -ms-overflow-style: none;
+  }
+
+  * {
+    scrollbar-width: block;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    height: 2px;
+    background-color: transparent;
   }
 }
 
