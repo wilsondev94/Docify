@@ -78,7 +78,7 @@ export default function Editor({ initialContent }: EditorProps) {
       attributes: {
         style: `padding-left: ${leftMargin}px; padding-right:${rightMargin}px;`,
         class:
-          "focus:outline-none print:border-0 bg-white dark:bg-gray-950 border border-[#C7C7C7] dark:border-gray-700 dark:print:border-0 flex flex-col min-h-[1054px] w-[816px] pt-10 pr-14 pb-10 cursor-text dark:text-white xsm:w-[350px]",
+          "focus:outline-none print:border-0 bg-white dark:bg-gray-950 border border-[#C7C7C7] dark:border-gray-700 dark:print:border-0 flex flex-col min-h-[1054px] w-[816px] pt-10 pr-14 pb-10 cursor-text dark:text-white xsm:w-[350px] sm:w-[816px]",
       },
     },
     extensions: [
