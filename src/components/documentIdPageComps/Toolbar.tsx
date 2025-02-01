@@ -112,7 +112,7 @@ export default function Toolbar() {
   ];
 
   return (
-    <div className="w-full overflow-x-auto whitespace-nowrap scroll-smooth scrollbar-hide right-[0.5rem] left-[0.3rem] px-2.5 py-0.5 rounded-[24px] min-h-[40px] flex items-center gap-x-0 bg-gray-200 dark:text-gray-300 dark:bg-gray-900 xsm:absolute xsm:top-28 sm:absolute sm:top-[4.5rem]">
+    <div className="w-full overflow-x-auto whitespace-nowrap scroll-smooth scrollbar-hide right-[0.5rem] left-[0.3rem] px-2.5 py-0.5 rounded-[24px] min-h-[40px] flex items-center xsm:justify-start sm:justify-center gap-x-0 bg-gray-200 dark:text-gray-300 dark:bg-gray-900 xsm:absolute xsm:top-28 sm:absolute sm:top-[4.5rem]">
       {sections[0].map((item) => (
         <ToolbarBtn key={item.label} {...item} />
       ))}
