@@ -18,7 +18,9 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Docify",
-  description: "",
+  description:
+    "Docify is documents creation and editing platform for individuals and teams",
+  icons: { icon: "/logo-title2.svg" },
 };
 
 export default function RootLayout({
