@@ -19,7 +19,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Docify",
   description:
-    "Docify is documents creation and editing platform for individuals and teams",
+    "Docify is documents creation and editing platform for individuals collaboratively.",
   icons: { icon: "/logo-title2.svg" },
 };
 
